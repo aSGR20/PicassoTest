@@ -54,7 +54,7 @@ namespace PicassoTest.Tests
         }
 
         [Test]
-        public void CanBeCancelledBy_UserIsNull_ThrowsNullException()
+        public void CanBeCancelledBy_UserIsNull_ThrowsNullRefernceException()
         {
             //Arrange
             var paco = new User();
@@ -62,7 +62,7 @@ namespace PicassoTest.Tests
             var reservation = new Reservation { MadeBy = paco };
 
             //Act
-            Assert.Throws<ArgumentNullException>(() => reservation.CanBeCancelledBy(null));
+            Assert.Throws<NullReferenceException>(() => reservation.CanBeCancelledBy(null));
         }
     }
 }

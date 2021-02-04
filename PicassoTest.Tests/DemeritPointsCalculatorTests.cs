@@ -9,17 +9,6 @@ namespace PicassoTest.Tests
         public void Setup() {}
 
         [Test]
-        public void CalculateDemeritPoints_LessThan0_ReturnsThrows()
-        {
-            var speed = -1;
-            var calculator = new DemeritPointsCalculator();
-
-            var result = calculator.CalculateDemeritPoints(speed);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => calculator.CalculateDemeritPoints(speed));
-        }
-
-        [Test]
         public void CalculateDemeritPoints_LessThanSpeedLimit_Returns0()
         {
             var speed = 20;
@@ -44,12 +33,19 @@ namespace PicassoTest.Tests
         }
 
         [Test]
-        public void CalculateDemeritPoints_MoreThanMaxSpeed_ReturnsThrows()
+        public void CalculateDemeritPoints_LessThan0_ThrowsArgumentOutOfRangeException()
+        {
+            var speed = -1;
+            var calculator = new DemeritPointsCalculator();
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => calculator.CalculateDemeritPoints(speed));
+        }
+
+        [Test]
+        public void CalculateDemeritPoints_MoreThanMaxSpeed_ThrowsArgumentOutOfRangeException()
         {
             var speed = 350;
             var calculator = new DemeritPointsCalculator();
-
-            var result = calculator.CalculateDemeritPoints(speed);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => calculator.CalculateDemeritPoints(speed));
         }

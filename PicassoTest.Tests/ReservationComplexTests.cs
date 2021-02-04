@@ -54,7 +54,7 @@ namespace PicassoTest.Tests
         }
 
         [Test]
-        public void CanBeCancelledBy_UserIsNull_ThrowsNullException()
+        public void CanBeCancelledBy_UserIsNull_ThrowsNullReferenceException()
         {
             //Arrange
             var paco = new User();
@@ -62,29 +62,26 @@ namespace PicassoTest.Tests
             var reservation = new Reservation { MadeBy = paco };
 
             //Act
-            Assert.Throws<ArgumentNullException>(() => reservation.CanBeCancelledBy(null));
+            Assert.Throws<NullReferenceException>(() => reservation.CanBeCancelledBy(null));
         }
 
         [Test]
-        public void PayReservation_UserCanPaidReservation_ReturnsThrowsNotImplemented()
+        public void PayReservation_UserCanPaidReservation_ThrowsNotImplemented()
         {
             var userComplex = new UserComplex();
             var reservationComplex = new ReservationComplex();
 
             userComplex.Money = 100;
-            reservationComplex.Price = 50;
-
-            var result = reservationComplex.PayReservation(userComplex);
 
             Assert.Throws<NotImplementedException>(() => reservationComplex.PayReservation(userComplex));
         }
 
         [Test]
-        public void PayReservation_UserIsNull_ReturnsThrowsNull()
+        public void PayReservation_UserIsNull_ThrowsNotImplementedException()
         {
             var reservationComplex = new ReservationComplex();
 
-            Assert.Throws<NullReferenceException>(() => reservationComplex.PayReservation(null));
+            Assert.Throws<NotImplementedException>(() => reservationComplex.PayReservation(null));
         }
     }
 }

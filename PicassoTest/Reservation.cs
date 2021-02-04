@@ -17,6 +17,10 @@ namespace PicassoTest
             {
                 return true;
             }
+            if(user == null)
+            {
+                throw new ArgumentNullException();
+            }
 
             return false;
         }
